@@ -25,14 +25,15 @@ namespace Ui
 class ImageFinderSettings;
 }
 
-class ImageFinderPlugin;
+class ImageFinder;
 
 class ImageFinderSettings : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ImageFinderSettings(ImageFinderPlugin* finder, QWidget* parent = 0);
+    explicit ImageFinderSettings(ImageFinder* finder, QWidget* parent = 0);
+
     ~ImageFinderSettings();
 
 private slots:
@@ -40,7 +41,7 @@ private slots:
 
 private:
     Ui::ImageFinderSettings* ui;
-    ImageFinderPlugin* m_finder;
+    ImageFinder* m_finder;
 };
 
 #endif // IMAGEFINDERSETTINGS_H

@@ -20,6 +20,7 @@
 
 #include "plugininterface.h"
 
+class ImageFinder;
 class ImageFinderSettings;
 
 class ImageFinderPlugin : public QObject, public PluginInterface
@@ -42,17 +43,9 @@ public:
     QTranslator* getTranslator(const QString &locale);
     void showSettings(QWidget* parent = 0);
 
-    void populateWebViewMenu(QMenu* menu, WebView* view, const WebHitTestResult &r);
-    bool mousePress(const Qz::ObjectName &type, QObject *obj, QMouseEvent *event);
-
-private slots:
-    void actionSlot();
-
 private:
+    ImageFinder* m_finder;
     QPointer<ImageFinderSettings> m_settings;
-
-    WebView* m_view;
-    QString m_settingsPath;
 };
 
 #endif // IMAGEFINDER_H

@@ -18,10 +18,8 @@
 #include "imagefinderplugin.h"
 #include "imagefindersettings.h"
 #include "browserwindow.h"
-#include "webview.h"
 #include "pluginproxy.h"
 #include "mainapplication.h"
-#include "webhittestresult.h"
 
 #include <QMenu>
 #include <QTranslator>
@@ -29,7 +27,7 @@
 
 ImageFinderPlugin::ImageFinderPlugin()
     : QObject()
-    , m_view(0)
+    , m_finder(0)
 {
 }
 
@@ -77,7 +75,12 @@ QTranslator* ImageFinderPlugin::getTranslator(const QString &locale)
 
 void ImageFinderPlugin::showSettings(QWidget *parent)
 {
+    if (!m_settings) {
+        m_settings = new ImageFinderSettings(m_finder, parent);
+    }
 
+    m_settings.data()->show();
+    m_settings.data()->raise();
 }
 
 #if QT_VERSION < 0x050000
