@@ -16,8 +16,6 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
 #include "imagefinder.h"
-#include "webview.h"
-#include "webhittestresult.h"
 
 #include <QApplication>
 #include <QMouseEvent>
@@ -25,15 +23,17 @@
 
 ImageFinder::ImageFinder(const QString &settingsFile, QObject *parent)
     : QObject(parent)
-    , m_view(0)
     , m_settingsFile(settingsFile)
 {
 
 }
 
-bool ImageFinder::mousePress(QObject *obj, QMouseEvent *event)
+ImageFinder::SearchEngine ImageFinder::searchEngine() const
 {
-    Q_UNUSED(obj)
+    return m_searchEngine;
+}
 
-    return false;
+void ImageFinder::setSearchEngine(const SearchEngine &searchEngine)
+{
+    m_searchEngine = searchEngine;
 }

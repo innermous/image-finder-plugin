@@ -19,9 +19,13 @@
 #include "imagefindersettings.h"
 #include "imagefinder.h"
 #include "browserwindow.h"
+#include "webview.h"
+#include "webhittestresult.h"
 #include "pluginproxy.h"
 #include "mainapplication.h"
+#include "enhancedmenu.h"
 
+#include <QMenu>
 #include <QTranslator>
 
 ImageFinderPlugin::ImageFinderPlugin()
@@ -82,13 +86,26 @@ void ImageFinderPlugin::showSettings(QWidget *parent)
     m_settings.data()->raise();
 }
 
-bool ImageFinderPlugin::mousePress(const Qz::ObjectName &type, QObject* obj, QMouseEvent *event)
+void ImageFinderPlugin::populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r)
 {
-    if (type == Qz::ON_WebView) {
-        return m_finder->mousePress(obj, event);
-    }
+    Q_UNUSED(view)
 
-    return false;
+    if (!r.imageUrl().isEmpty()) {
+        Action* action = new Action(tr("Search image"));
+        connect(action, SIGNAL(triggered()), this, SLOT(searchInSelectedTab()));
+        connect(action, SIGNAL(ctrlTriggered()), this, SLOT(searchInBackgroundTab()));
+        menu->addAction(action);
+    }
+}
+
+void ImageFinderPlugin::searchInSelectedTab()
+{
+    qDebug() << "search in selected tab";
+}
+
+void ImageFinderPlugin::searchInBackgroundTab()
+{
+    qDebug() << "search in background tab";
 }
 
 #if QT_VERSION < 0x050000

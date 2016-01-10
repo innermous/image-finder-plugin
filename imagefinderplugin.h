@@ -43,7 +43,11 @@ public:
     QTranslator* getTranslator(const QString &locale);
     void showSettings(QWidget* parent = 0);
 
-    bool mousePress(const Qz::ObjectName &type, QObject *obj, QMouseEvent *event);
+    void populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r);
+
+private slots:
+    void searchInSelectedTab();
+    void searchInBackgroundTab();
 
 private:
     ImageFinder* m_finder;

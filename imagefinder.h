@@ -38,10 +38,10 @@ public:
 
     explicit ImageFinder(const QString& settingsFile, QObject* parent = 0);
 
-    bool mousePress(QObject* obj, QMouseEvent* event);
+    SearchEngine searchEngine() const;
+    void setSearchEngine(const SearchEngine &searchEngine);
 
 private:
-    WebView* m_view;
     QString m_settingsFile;
     SearchEngine m_searchEngine;
 };
