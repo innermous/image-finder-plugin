@@ -46,8 +46,6 @@ PluginSpec ImageFinderPlugin::pluginSpec()
 
 void ImageFinderPlugin::init(InitState state, const QString &settingsPath)
 {
-    qDebug() << __FUNCTION__ << "called";
-
     m_finder = new ImageFinder(settingsPath + QL1S("/extensions.ini"), this);
 
     Q_UNUSED(state);
