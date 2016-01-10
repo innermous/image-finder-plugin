@@ -17,13 +17,12 @@
 * ============================================================ */
 #include "imagefinderplugin.h"
 #include "imagefindersettings.h"
+#include "imagefinder.h"
 #include "browserwindow.h"
 #include "pluginproxy.h"
 #include "mainapplication.h"
 
-#include <QMenu>
 #include <QTranslator>
-#include <QPushButton>
 
 ImageFinderPlugin::ImageFinderPlugin()
     : QObject()
@@ -48,6 +47,8 @@ PluginSpec ImageFinderPlugin::pluginSpec()
 void ImageFinderPlugin::init(InitState state, const QString &settingsPath)
 {
     qDebug() << __FUNCTION__ << "called";
+
+    m_finder = new ImageFinder(settingsPath + QL1S("/extensions.ini"), this);
 
     Q_UNUSED(state);
 
@@ -81,6 +82,15 @@ void ImageFinderPlugin::showSettings(QWidget *parent)
 
     m_settings.data()->show();
     m_settings.data()->raise();
+}
+
+bool ImageFinderPlugin::mousePress(const Qz::ObjectName &type, QObject* obj, QMouseEvent *event)
+{
+    if (type == Qz::ON_WebView) {
+        return m_finder->mousePress(obj, event);
+    }
+
+    return false;
 }
 
 #if QT_VERSION < 0x050000

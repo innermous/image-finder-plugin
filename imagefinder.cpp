@@ -15,39 +15,25 @@
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 * ============================================================ */
-#ifndef IMAGEFINDERPLUGIN_H
-#define IMAGEFINDERPLUGIN_H
+#include "imagefinder.h"
+#include "webview.h"
+#include "webhittestresult.h"
 
-#include "plugininterface.h"
+#include <QApplication>
+#include <QMouseEvent>
+#include <QSettings>
 
-class ImageFinder;
-class ImageFinderSettings;
-
-class ImageFinderPlugin : public QObject, public PluginInterface
+ImageFinder::ImageFinder(const QString &settingsFile, QObject *parent)
+    : QObject(parent)
+    , m_view(0)
+    , m_settingsFile(settingsFile)
 {
-    Q_OBJECT
-    Q_INTERFACES(PluginInterface)
 
-#if QT_VERSION >= 0x50000
-    Q_PLUGIN_METADATA(IID "QupZilla.Browser.plugin.ImageFinderPlugin")
-#endif
+}
 
-public:
-    explicit ImageFinderPlugin();
-    PluginSpec pluginSpec();
+bool ImageFinder::mousePress(QObject *obj, QMouseEvent *event)
+{
+    Q_UNUSED(obj)
 
-    void init(InitState state, const QString &settingsPath);
-    void unload();
-    bool testPlugin();
-
-    QTranslator* getTranslator(const QString &locale);
-    void showSettings(QWidget* parent = 0);
-
-    bool mousePress(const Qz::ObjectName &type, QObject *obj, QMouseEvent *event);
-
-private:
-    ImageFinder* m_finder;
-    QPointer<ImageFinderSettings> m_settings;
-};
-
-#endif // IMAGEFINDERPLUGIN_H
+    return false;
+}

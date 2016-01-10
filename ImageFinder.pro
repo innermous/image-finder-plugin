@@ -3,12 +3,14 @@ TARGET = $$qtLibraryTarget(ImageFinder)
 os2: TARGET = ImgFndr
 
 HEADERS += \
+    imagefinderplugin.h \
+    imagefinder.h
     imagefindersettings.h \
-    imagefinderplugin.h
 
 SOURCES += \
+    imagefinderplugin.cpp \
+    imagefinder.cpp
     imagefindersettings.cpp \
-    imagefinderplugin.cpp
 
 RESOURCES += imagefinder.qrc
 
