@@ -32,8 +32,6 @@ public:
     enum SearchEngine {
         Google = 0,
         Yandex,
-        Tineye,
-        Saucenao
     };
 
     explicit ImageFinder(const QString& settingsFile, QObject* parent = 0);

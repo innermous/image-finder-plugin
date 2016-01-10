@@ -19,7 +19,7 @@
      <x>90</x>
      <y>130</y>
      <width>331</width>
-     <height>24</height>
+     <height>26</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -36,20 +36,18 @@
        <property name="text">
         <string>Google</string>
        </property>
+       <property name="icon">
+        <iconset resource="imagefinder.qrc">
+         <normaloff>:/imgfinder/data/google.png</normaloff>:/imgfinder/data/google.png</iconset>
+       </property>
       </item>
       <item>
        <property name="text">
         <string>Yandex</string>
        </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>TinEye</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>SauceNAO</string>
+       <property name="icon">
+        <iconset resource="imagefinder.qrc">
+         <normaloff>:/imgfinder/data/yandex.png</normaloff>:/imgfinder/data/yandex.png</iconset>
        </property>
       </item>
      </widget>
@@ -69,7 +67,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>

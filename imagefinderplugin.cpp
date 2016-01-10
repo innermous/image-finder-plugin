@@ -40,7 +40,7 @@ PluginSpec ImageFinderPlugin::pluginSpec()
     spec.name = "ImageFinder";
     spec.info = "Image Finder Plugin";
     spec.description = "Provides context menu with reverse image search engine support";
-    spec.version = "0.1.0";
+    spec.version = "0.1.1";
     spec.author = "Vladislav Tronko <innermous@gmail.com>";
     spec.icon = QPixmap(":/imgfinder/data/icon.png");
     spec.hasSettings = true;
@@ -89,7 +89,9 @@ void ImageFinderPlugin::showSettings(QWidget *parent)
 void ImageFinderPlugin::populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r)
 {
     if (!r.imageUrl().isEmpty()) {
-        Action* action = new Action(tr("Search image in ") + m_finder->searchEngineName());
+        QString engineName = m_finder->searchEngineName();
+        Action* action = new Action(tr("Search image in ") + engineName);
+        action->setIcon(QIcon(":/imgfinder/data/" + engineName.toLower() + ".png"));
         action->setData(m_finder->getSearchQuery(r.imageUrl()));
         connect(action, SIGNAL(triggered()), view, SLOT(openUrlInSelectedTab()));
         connect(action, SIGNAL(ctrlTriggered()), view, SLOT(openUrlInBackgroundTab()));
