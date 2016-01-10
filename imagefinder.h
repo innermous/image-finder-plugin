@@ -30,7 +30,7 @@ class ImageFinder : public QObject
     Q_OBJECT
 public:
     enum SearchEngine {
-        Google,
+        Google = 0,
         Yandex,
         Tineye,
         Saucenao
@@ -39,7 +39,9 @@ public:
     explicit ImageFinder(const QString& settingsFile, QObject* parent = 0);
 
     SearchEngine searchEngine() const;
-    void setSearchEngine(const SearchEngine &searchEngine);
+    void setSearchEngine(SearchEngine searchEngine);
+
+    QString searchEngineName() const;
 
 private:
     QString m_settingsFile;

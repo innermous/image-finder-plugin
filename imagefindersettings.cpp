@@ -29,7 +29,7 @@ ImageFinderSettings::ImageFinderSettings(ImageFinder* finder, QWidget* parent)
 
     connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accepted()));
     connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(close()));
-    // (ui)->setEngine ( finder:engine )
+    ui->cboxEngines->setCurrentIndex(m_finder->searchEngine());
 }
 
 ImageFinderSettings::~ImageFinderSettings()
@@ -39,6 +39,9 @@ ImageFinderSettings::~ImageFinderSettings()
 
 void ImageFinderSettings::accepted()
 {
-    // update search engine
+    int index = ui->cboxEngines->currentIndex();
+    ImageFinder::SearchEngine engine = static_cast<ImageFinder::SearchEngine>(index);
+    m_finder->setSearchEngine(engine);
+
     close();
 }

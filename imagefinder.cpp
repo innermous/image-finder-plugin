@@ -20,12 +20,19 @@
 #include <QApplication>
 #include <QMouseEvent>
 #include <QSettings>
+#include <QDebug>
 
 ImageFinder::ImageFinder(const QString &settingsFile, QObject *parent)
     : QObject(parent)
     , m_settingsFile(settingsFile)
+    , m_searchEngine(SearchEngine::Google)
 {
+    QSettings settings(m_settingsFile, QSettings::IniFormat);
+    settings.beginGroup("ImageFinder");
 
+    m_searchEngine = static_cast<SearchEngine>(settings.value("SearchEngine").toInt());
+
+    settings.endGroup();
 }
 
 ImageFinder::SearchEngine ImageFinder::searchEngine() const
@@ -33,7 +40,25 @@ ImageFinder::SearchEngine ImageFinder::searchEngine() const
     return m_searchEngine;
 }
 
-void ImageFinder::setSearchEngine(const SearchEngine &searchEngine)
+void ImageFinder::setSearchEngine(ImageFinder::SearchEngine searchEngine)
 {
     m_searchEngine = searchEngine;
+
+    QSettings settings(m_settingsFile, QSettings::IniFormat);
+    settings.beginGroup("ImageFinder");
+    settings.setValue("SearchEngine", m_searchEngine);
+    settings.endGroup();
+}
+
+QString ImageFinder::searchEngineName() const
+{
+    QStringList searchEngines =
+    {
+        "Google",
+        "Yandex",
+        "TinEye",
+        "SauceNao"
+    };
+
+    return searchEngines.at(m_searchEngine);
 }

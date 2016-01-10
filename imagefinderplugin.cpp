@@ -91,7 +91,7 @@ void ImageFinderPlugin::populateWebViewMenu(QMenu *menu, WebView *view, const We
     Q_UNUSED(view)
 
     if (!r.imageUrl().isEmpty()) {
-        Action* action = new Action(tr("Search image"));
+        Action* action = new Action(tr("Search image in ") + m_finder->searchEngineName());
         connect(action, SIGNAL(triggered()), this, SLOT(searchInSelectedTab()));
         connect(action, SIGNAL(ctrlTriggered()), this, SLOT(searchInBackgroundTab()));
         menu->addAction(action);
