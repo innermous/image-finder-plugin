@@ -43,6 +43,8 @@ public:
 
     QString searchEngineName() const;
 
+    QUrl getSearchQuery(QUrl imageUrl);
+
 private:
     QString m_settingsFile;
     SearchEngine m_searchEngine;

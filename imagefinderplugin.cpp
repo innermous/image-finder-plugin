@@ -88,24 +88,13 @@ void ImageFinderPlugin::showSettings(QWidget *parent)
 
 void ImageFinderPlugin::populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r)
 {
-    Q_UNUSED(view)
-
     if (!r.imageUrl().isEmpty()) {
         Action* action = new Action(tr("Search image in ") + m_finder->searchEngineName());
-        connect(action, SIGNAL(triggered()), this, SLOT(searchInSelectedTab()));
-        connect(action, SIGNAL(ctrlTriggered()), this, SLOT(searchInBackgroundTab()));
+        action->setData(m_finder->getSearchQuery(r.imageUrl()));
+        connect(action, SIGNAL(triggered()), view, SLOT(openUrlInSelectedTab()));
+        connect(action, SIGNAL(ctrlTriggered()), view, SLOT(openUrlInBackgroundTab()));
         menu->addAction(action);
     }
-}
-
-void ImageFinderPlugin::searchInSelectedTab()
-{
-    qDebug() << "search in selected tab";
-}
-
-void ImageFinderPlugin::searchInBackgroundTab()
-{
-    qDebug() << "search in background tab";
 }
 
 #if QT_VERSION < 0x050000

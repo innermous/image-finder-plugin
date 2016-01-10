@@ -62,3 +62,15 @@ QString ImageFinder::searchEngineName() const
 
     return searchEngines.at(m_searchEngine);
 }
+
+QUrl ImageFinder::getSearchQuery(QUrl imageUrl)
+{
+    QUrl query;
+
+    switch (m_searchEngine)
+    {
+    default: break;
+    }
+
+    return query;
+}

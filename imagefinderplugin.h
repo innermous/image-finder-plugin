@@ -45,10 +45,6 @@ public:
 
     void populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r);
 
-private slots:
-    void searchInSelectedTab();
-    void searchInBackgroundTab();
-
 private:
     ImageFinder* m_finder;
     QPointer<ImageFinderSettings> m_settings;
