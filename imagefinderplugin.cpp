@@ -53,9 +53,6 @@ void ImageFinderPlugin::init(InitState state, const QString &settingsPath)
     m_finder = new ImageFinder(settingsPath + QL1S("/extensions.ini"), this);
 
     Q_UNUSED(state);
-
-    QZ_REGISTER_EVENT_HANDLER(PluginProxy::MousePressHandler);
-    QZ_REGISTER_EVENT_HANDLER(PluginProxy::KeyPressHandler);
 }
 
 void ImageFinderPlugin::unload()
