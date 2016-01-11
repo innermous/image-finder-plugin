@@ -8,6 +8,7 @@ Supported reverse image search engines:
   - TinEye (in progress)
 
 ### Building
+Before starting, make sure you have QtWebEngine (>=5.6)
 Change the working directory to QupZilla source tree
 ```sh
 $ cd src/plugins
