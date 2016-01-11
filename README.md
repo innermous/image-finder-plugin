@@ -5,5 +5,24 @@ Image Finder is a little plug-in for [QupZilla](https://github.com/QupZilla/qupz
 Supported reverse image search engines:
   - Google
   - Yandex
-  - TinEye
-  - SauceNAO
+  - TinEye (in progress)
+
+### Building
+Change the working directory to QupZilla source tree
+```sh
+$ cd src/plugins
+```
+Clone ImageFinder source code, run
+```sh
+$ git clone https://github.com/innermous/image-finder-plugin.git
+$ cd image-finder-plugin
+```
+Generate a Makefile and build
+```sh
+$ qmake
+$ make -j4
+```
+
+### Contributing
+All contributions are welcome, just fork this project, make your changes and make pull-request. 
+Translations, bug-fixes and issue reports are wanted.
