@@ -50,6 +50,15 @@
          <normaloff>:/imgfinder/data/yandex.png</normaloff>:/imgfinder/data/yandex.png</iconset>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>TinEye</string>
+       </property>
+       <property name="icon">
+        <iconset resource="imagefinder.qrc">
+         <normaloff>:/imgfinder/data/tineye.png</normaloff>:/imgfinder/data/tineye.png</iconset>
+       </property>
+      </item>
      </widget>
     </item>
    </layout>

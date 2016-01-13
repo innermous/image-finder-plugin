@@ -3,5 +3,6 @@
         <file>data/icon.png</file>
         <file>data/google.png</file>
         <file>data/yandex.png</file>
+        <file>data/tineye.png</file>
     </qresource>
 </RCC>

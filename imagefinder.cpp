@@ -55,7 +55,8 @@ QString ImageFinder::searchEngineName() const
     QStringList searchEngines =
     {
         "Google",
-        "Yandex"
+        "Yandex",
+        "TinEye"
     };
 
     return searchEngines.at(m_searchEngine);
@@ -75,10 +76,12 @@ QUrl ImageFinder::getSearchQuery(QUrl imageUrl)
         query = QUrl("https://yandex.com/images/search?&img_url=" + imageUrl.toString() + "&rpt=imageview");
         break;
 
+    case SearchEngine::TinEye:
+        query = QUrl("http://www.tineye.com/search?url=" + imageUrl.toString());
+        break;
+
     default: break;
     }
-
-    qDebug() << query;
 
     return query;
 }

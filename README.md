@@ -5,10 +5,11 @@ Image Finder is a little plug-in for [QupZilla](https://github.com/QupZilla/qupz
 Supported reverse image search engines:
   - Google
   - Yandex
-  - TinEye (in progress)
+  - TinEye
 
 ### Building
-Before starting, make sure you have QtWebEngine (>=5.6)
+Before starting, make sure you have QtWebEngine (>=5.6).
+
 Change the working directory to QupZilla source tree
 ```sh
 $ cd src/plugins
