@@ -39,7 +39,7 @@ PluginSpec ImageFinderPlugin::pluginSpec()
     spec.name = "ImageFinder";
     spec.info = "Image Finder Plugin";
     spec.description = "Provides context menu with reverse image search engine support";
-    spec.version = "0.1.1";
+    spec.version = "0.2.0";
     spec.author = "Vladislav Tronko <innermous@gmail.com>";
     spec.icon = QPixmap(":/imgfinder/data/icon.png");
     spec.hasSettings = true;
