@@ -84,6 +84,9 @@ void ImageFinderPlugin::showSettings(QWidget *parent)
 
 void ImageFinderPlugin::populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r)
 {
+    // Don't let local files fool you
+    if (r.imageUrl().toString().mid(0, 4) != QString("http")) return;
+
     if (!r.imageUrl().isEmpty()) {
         QString engineName = m_finder->searchEngineName();
         Action* action = new Action(tr("Search image in ") + engineName);
