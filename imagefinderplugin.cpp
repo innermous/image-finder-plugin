@@ -18,7 +18,6 @@
 #include "imagefinderplugin.h"
 #include "imagefindersettings.h"
 #include "imagefinder.h"
-#include "browserwindow.h"
 #include "webview.h"
 #include "webhittestresult.h"
 #include "pluginproxy.h"

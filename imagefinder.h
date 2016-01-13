@@ -19,9 +19,6 @@
 #define IMAGEFINDER_H
 
 #include <QObject>
-#include <QPoint>
-
-class QMouseEvent;
 
 class WebView;
 

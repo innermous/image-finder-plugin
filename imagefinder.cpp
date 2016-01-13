@@ -18,9 +18,8 @@
 #include "imagefinder.h"
 
 #include <QApplication>
-#include <QMouseEvent>
 #include <QSettings>
-#include <QDebug>
+#include <QUrl>
 
 ImageFinder::ImageFinder(const QString &settingsFile, QObject *parent)
     : QObject(parent)
