@@ -27,8 +27,8 @@ ImageFinderSettings::ImageFinderSettings(ImageFinder* finder, QWidget* parent)
     setAttribute(Qt::WA_DeleteOnClose);
     ui->setupUi(this);
 
-    connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(accepted()));
-    connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(close()));
+    connect(ui->buttonBox, &QDialogButtonBox::accepted, this, &ImageFinderSettings::accepted);
+    connect(ui->buttonBox, &QDialogButtonBox::rejected, this, &ImageFinderSettings::close);
     ui->cboxEngines->setCurrentIndex(m_finder->searchEngine());
 }
 

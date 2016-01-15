@@ -21,15 +21,17 @@
 #include <QSettings>
 #include <QUrl>
 
+#include "qzcommon.h"
+
 ImageFinder::ImageFinder(const QString &settingsFile, QObject *parent)
     : QObject(parent)
     , m_settingsFile(settingsFile)
     , m_searchEngine(SearchEngine::Google)
 {
     QSettings settings(m_settingsFile, QSettings::IniFormat);
-    settings.beginGroup("ImageFinder");
+    settings.beginGroup(QSL("ImageFinder"));
 
-    m_searchEngine = static_cast<SearchEngine>(settings.value("SearchEngine").toInt());
+    m_searchEngine = static_cast<SearchEngine>(settings.value(QSL("SearchEngine")).toInt());
 
     settings.endGroup();
 }
@@ -44,19 +46,15 @@ void ImageFinder::setSearchEngine(ImageFinder::SearchEngine searchEngine)
     m_searchEngine = searchEngine;
 
     QSettings settings(m_settingsFile, QSettings::IniFormat);
-    settings.beginGroup("ImageFinder");
-    settings.setValue("SearchEngine", m_searchEngine);
+    settings.beginGroup(QSL("ImageFinder"));
+    settings.setValue(QSL("SearchEngine"), m_searchEngine);
     settings.endGroup();
 }
 
 QString ImageFinder::searchEngineName() const
 {
-    QStringList searchEngines =
-    {
-        QStringLiteral("Google"),
-        QStringLiteral("Yandex"),
-        QStringLiteral("TinEye")
-    };
+    QStringList searchEngines;
+    searchEngines << QSL("Google") << QSL("Yandex") << QSL("TinEye");
 
     return searchEngines.at(m_searchEngine);
 }
@@ -64,19 +62,18 @@ QString ImageFinder::searchEngineName() const
 QUrl ImageFinder::getSearchQuery(QUrl imageUrl)
 {
     QUrl query;
-
     switch (m_searchEngine)
     {
     case SearchEngine::Google:
-        query = QUrl(QStringLiteral("https://www.google.com/searchbyimage?site=search&image_url=") +  imageUrl.toString());
+        query = QUrl(QSL("https://www.google.com/searchbyimage?site=search&image_url=%1").arg(imageUrl.toString()));
         break;
 
     case SearchEngine::Yandex:
-        query = QUrl(QStringLiteral("https://yandex.com/images/search?&img_url=") + imageUrl.toString() + QStringLiteral("&rpt=imageview"));
+        query = QUrl(QSL("https://yandex.com/images/search?&img_url=%1&rpt=imageview").arg(imageUrl.toString()));
         break;
 
     case SearchEngine::TinEye:
-        query = QUrl(QStringLiteral("http://www.tineye.com/search?url=") + imageUrl.toString());
+        query = QUrl(QSL("http://www.tineye.com/search?url=%1").arg(imageUrl.toString()));
         break;
 
     default: break;

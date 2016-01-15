@@ -28,9 +28,7 @@ class ImageFinderPlugin : public QObject, public PluginInterface
     Q_OBJECT
     Q_INTERFACES(PluginInterface)
 
-#if QT_VERSION >= 0x50000
     Q_PLUGIN_METADATA(IID "QupZilla.Browser.plugin.ImageFinderPlugin")
-#endif
 
 public:
     explicit ImageFinderPlugin();
@@ -41,7 +39,7 @@ public:
     bool testPlugin();
 
     QTranslator* getTranslator(const QString &locale);
-    void showSettings(QWidget* parent = 0);
+    void showSettings(QWidget* parent = Q_NULLPTR);
 
     void populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r);
 

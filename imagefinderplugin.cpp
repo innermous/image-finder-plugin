@@ -29,7 +29,7 @@
 
 ImageFinderPlugin::ImageFinderPlugin()
     : QObject()
-    , m_finder(0)
+    , m_finder(Q_NULLPTR)
 {
 }
 
@@ -68,7 +68,7 @@ bool ImageFinderPlugin::testPlugin()
 QTranslator* ImageFinderPlugin::getTranslator(const QString &locale)
 {
     QTranslator* translator = new QTranslator(this);
-    translator->load(locale, ":/autoscroll/locale/");
+    translator->load(locale, QSL(":/imgfinder/locale/"));
     return translator;
 }
 
@@ -85,19 +85,15 @@ void ImageFinderPlugin::showSettings(QWidget *parent)
 void ImageFinderPlugin::populateWebViewMenu(QMenu *menu, WebView *view, const WebHitTestResult &r)
 {
     // Don't let local files fool you
-    if (r.imageUrl().toString().mid(0, 4) != QString("http")) return;
+    if (r.imageUrl().scheme() != QSL("http") && r.imageUrl().scheme() != QSL("https")) return;
 
     if (!r.imageUrl().isEmpty()) {
         QString engineName = m_finder->searchEngineName();
         Action* action = new Action(tr("Search image in ") + engineName);
-        action->setIcon(QIcon(":/imgfinder/data/" + engineName.toLower() + ".png"));
+        action->setIcon(QIcon(QSL(":/imgfinder/data/%1.png").arg(engineName.toLower())));
         action->setData(m_finder->getSearchQuery(r.imageUrl()));
         connect(action, SIGNAL(triggered()), view, SLOT(openUrlInSelectedTab()));
         connect(action, SIGNAL(ctrlTriggered()), view, SLOT(openUrlInBackgroundTab()));
         menu->addAction(action);
     }
 }
-
-#if QT_VERSION < 0x050000
-Q_EXPORT_PLUGIN2(ImageFinder, ImageFinderPlugin)
-#endif

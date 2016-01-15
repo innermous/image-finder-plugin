@@ -32,7 +32,7 @@ public:
         TinEye
     };
 
-    explicit ImageFinder(const QString& settingsFile, QObject* parent = 0);
+    explicit ImageFinder(const QString& settingsFile, QObject* parent = Q_NULLPTR);
 
     SearchEngine searchEngine() const;
     void setSearchEngine(SearchEngine searchEngine);

@@ -32,7 +32,7 @@ class ImageFinderSettings : public QDialog
     Q_OBJECT
 
 public:
-    explicit ImageFinderSettings(ImageFinder* finder, QWidget* parent = 0);
+    explicit ImageFinderSettings(ImageFinder* finder, QWidget* parent = Q_NULLPTR);
 
     ~ImageFinderSettings();
 
